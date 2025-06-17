@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Tahoma", sans-serif;
+    background: #FFFFFF;
+    line-height: 1.6;
+}
+
+
+/* Header igual ao segundo CSS */
+header {
+    background-color: #fceedd;
+    padding: 20px 40px;
+}
+
+.divHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 100px;
+    border-radius: 50%;
+}
+/* Navbar Mobile - Estilo igual ao segundo arquivo mas responsivo */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(16px, 4vw, 22px);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 0.3em 0;
+    display: block;
+}
+
+nav a:hover {
+    color: #cc7a00;
+}
+
+/* Ajustes adicionais para mobile */
+@media (max-width: 600px) {
+    header {
+        padding: 15px 20px;
+    }
+    
+    .divHeader {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    nav ul {
+        width: 100%;
+        gap: 0.8em;
+    }
+}
+/* Conteúdo Principal */
+main {
+    padding: 20px;
+}
+
+/* Estilos específicos da página de produtos */
+.produtos-titulo {
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(7, 1, 10);
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.produtos-item:before {
+    content: "🍰";
+    margin-right: 10px;
+}
+
+.texto-produtos {
+    padding-left: 5%;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.card {
+    background: #FFFFFF;
+    width: 280px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card h2 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.preco {
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60;
+    margin: 10px 0;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #fff;
+}
+
+#modal-caption {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background-color: #fceedd;
+    color: black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+footer p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+footer a, footer i {
+    color: #333;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.logo_footer {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}

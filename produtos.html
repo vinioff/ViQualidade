@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vi Qualidade - Produtos</title>
+    <link rel="stylesheet" href="style_produtos.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="divHeader">
+            <img src="logo.gif" alt="Vi Qualidade" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contatos.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <ul class="produtos-titulo">
+            <li class="produtos-item">Produtos</li>
+        </ul>
+        <p class="texto-produtos">
+            Todos os nossos produtos são feitos sob encomenda. Fique à vontade para escolher as cores.
+            <br><br>
+            Cada produto contém imagens de peças que já produzimos para você se inspirar no seu pedido!
+            <br><br>
+            Se tiver dúvidas, estamos à disposição para ajudar!
+        </p>
+        
+        <div class="container">
+            <div class="card">
+                <img src="sensacao.jpg" alt="Bolo Sensação">
+                <h2>Sensação</h2>
+                <p>Bolo de pote com massa de chocolate e recheio de morango</p>
+                <span class="preco">R$ 17/cada</span>
+            </div>
+            
+            <div class="card">
+                <img src="dois_amores.jpg" alt="Bolo Dois Amores">
+                <h2>Dois amores</h2>
+                <p>Bolo de pote com massa de chocolate e recheio de chocolate branco e preto</p>
+                <span class="preco">R$ 17/cada</span>
+            </div>
+            
+            <div class="card">
+                <img src="morango.jpg" alt="Bolo de Morango">
+                <h2>Morango</h2>
+                <p>Bolo de pote com massa branca e recheio de chocolate branco com morango</p>
+                <span class="preco">R$ 17/cada</span>
+            </div>
+            
+            <div class="card">
+                <img src="prestigio.jpg" alt="Bolo Prestígio">
+                <h2>Prestígio</h2>
+                <p>Bolo de pote com massa de chocolate e recheio de chocolate com coco</p>
+                <span class="preco">R$ 17/cada</span>
+            </div>
+
+             <div class="card">
+                <img src="maracuja.jpg" alt="Bolo Prestígio">
+                <h2>Maracujá</h2>
+                <p>Bolo de pote com massa branca com recheio de brigadeiro gormet branco, e com polpa de maracujá.</p>
+                <span class="preco">R$ 17/cada</span>
+                
+            </div>
+            
+        </div>
+    </main>
+
+    <footer>
+        <img src="logo.gif" alt="Vi Qualidade" class="logo_footer">
+        <p>
+            Encomendas on-line:
+            <a href="https://wa.me/qr/FD6ZCSVTAQ3IC1"><i class="fa fa-whatsapp"></i> (11) 94791-0845</a>
+            <span>|</span>
+            <a href="https://www.instagram.com/viny_offh/"><i class="fa fa-instagram"></i> @viny_offh</a>
+        </p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="modal-caption"></div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function () {
+                const modal = document.getElementById("modal");
+                const modalImg = document.getElementById("modal-img");
+                const captionText = document.getElementById("modal-caption");
+
+                const img = this.querySelector('img');
+                const title = this.querySelector('h2').innerText;
+                const desc = this.querySelector('p').innerText;
+                const preco = this.querySelector('.preco').innerText;
+
+                modal.style.display = "block";
+                modalImg.src = img.src;
+                captionText.innerHTML = `<strong>${title}</strong><br>${desc}<br><em>${preco}</em>`;
+            });
+        });
+
+        document.querySelector(".close").onclick = function () {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
