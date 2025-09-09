@@ -41,27 +41,67 @@
                         <th>Total</th>
                     </tr>
                 </thead>
-                    <tbody id="tabela-clientes">
+                    <tbody id="#tabela-clientes">
                         <tr class="cliente">
                             <td class="nome">Carolina</td>
                             <td class="produto">Bolo de Alpino</td>
-                            <td class="qnt">3</td>
+                            <td class="qnt">w</td>
                             <td class="unitario">17</td>
                             <td class="total"></td>
                         </tr>
                         <tr class="cliente">
-                            <td class="nome">q3efe</td>
+                            <td class="nome">Pedro</td>
                             <td class="produto">Bolo de Alpino</td>
+                            <td class="qnt">2</td>
+                            <td class="unitario"> w</td>
+                            <td class="total"></td>
+                        </tr>
+                        <tr class="cliente">
+                            <td class="nome">Luyra</td>
+                            <td class="produto">Bolo de Prestígio</td>
                             <td class="qnt">2</td>
                             <td class="unitario"> 17</td>
                             <td class="total"></td>
+                        </tr>                        <tr class="cliente">
+                            <td class="nome">Manuela</td>
+                            <td class="produto">Bolo de Sensação</td>
+                            <td class="qnt">1</td>
+                            <td class="unitario"> 17</td>
+                            <td class="total"></td>
                         </tr>
-                        
                     </tbody>
                     
                 
            </table>
+
+           <form action="#form-adcionar">
+            <h3>Nome</h3>
+            <input type="text" name="nome" placeholder="Nome">
+
+            <h3>Produto</h3>
+            <select name="" id="produto">
+                <option value="">Bolo de Sensação</option>
+                <option value="">Bolo de Prestígio</option>
+                <option value="">Bolo de Alpino</option>
+                <option value="">Bolo de Sensação</option>
+
+            </select>
+
+            <h3>Quantidade</h3>
+            <input type="number" name="qtde" placeholder="A Quantidade dos produtos">
+
+            <h3>Unidade </h3>
+            <input type="number" name="unitario" placeholder="Valor de cada unidade">
+
+
+    
+    
+            <button class="" name="adcionar-encomenda">Adicionar</button>
+          </form>
+           
          </section>
+
+         
         <footer>
             <img src="logo.gif" alt="Vi Qualidade" class="logo_footer">
             <p>
@@ -72,11 +112,11 @@
             </p>
         </footer>
      
-      
-       
+    
 
 
     </main>
     <script src="encomendas.js"></script>
+    <script src="adiciona_encomenda.js"></script>
    
 </body>

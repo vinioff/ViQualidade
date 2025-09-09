@@ -249,3 +249,13 @@ th{
     font-weight:bold;
     background-color: #EEE;
 }
+
+/* Destaque da informação inválida */
+.info-invalida{
+    background-color: red;
+    color: white;
+}
+
+.info-valor{
+    color: red;
+}
