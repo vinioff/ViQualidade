@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/style_contato.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../img/v.png" type="image/x-icon">
+    <title>Contatos - Vi Qualidade</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+     <div class="divHeader">
+            <img src="../img/logo.gif" alt="Vi Qualidade" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contatos.html">Contato</a></li>
+                    <li><a href="encomendas.html">Encomendas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="hero-section">
+            <ul class="contatos-titulo">
+                <li class="contato-item">Contatos</li>
+            </ul>
+            <p class="text-hero">Entre em contato caso tenha dúvidas!<br>
+            Você pode também nos chamar no Instagram.</p>
+        </div>
+
+        <div class="container-contato">
+            <div class="contato-info">
+                <h3>Nossos Canais</h3>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa fa-whatsapp"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>WhatsApp</h4>
+                        <p>(11) 94791-0845</p>
+                        <a href="https://wa.me/qr/FD6ZCSVTAQ3IC1" class="btn-contato">Enviar mensagem</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa fa-instagram"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Instagram</h4>
+                        <p>@viny_offh</p>
+                        <a href="https://www.instagram.com/viny_offh/" class="btn-contato">Seguir</a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>E-mail</h4>
+                        <p>contato@viqualidade.com</p>
+                        <a href="mailto:contato@viqualidade.com" class="btn-contato">Enviar e-mail</a>
+                    </div>
+                </div>
+            </div>
+
+            <form id="formContato" class="form-moderno">
+                <h3>Envie sua mensagem</h3>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nome">*Nome Completo</label>
+                        <input type="text" id="nome" required class="input-moderno" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" class="input-moderno" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" placeholder="(11) 96598-8547" class="input-moderno" />
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" rows="5" class="input-moderno"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <label class="section-label">Como prefere nosso contato?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="contato" value="email">
+                            <span class="radio-custom"></span>
+                            E-mail
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="contato" value="telefone">
+                            <span class="radio-custom"></span>
+                            Telefone
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="contato" value="whatsapp">
+                            <span class="radio-custom"></span>
+                            WhatsApp
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <label for="motivo" class="section-label">Qual o motivo do seu contato?</label>
+                    <select id="motivo" class="input-moderno">
+                        <option>Selecione</option>
+                        <option>Dúvida</option>
+                        <option>Sugestão</option>
+                        <option>Elogio</option>
+                        <option>Reclamação</option>
+                    </select>
+                </div>
+                
+                <div class="form-section">
+                    <label class="checkbox-option">
+                        <input type="checkbox">
+                        <span class="checkbox-custom"></span>
+                        Gostaria de receber nossa mensagem?
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-enviar">
+                    <span>Enviar Mensagem</span>
+                    <i class="fa fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <img src="../img/logo.gif" alt="Vi Qualidade" class="logo_footer">
+        <p>
+            Encomendas on-line:
+            <a href="https://wa.me/qr/FD6ZCSVTAQ3IC1"><i class="fa fa-whatsapp"></i> (11) 94791-0845</a>
+            <span>|</span>
+            <a href="https://www.instagram.com/viny_offh/"><i class="fa fa-instagram"></i> @viny_offh</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>
