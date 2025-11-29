@@ -1,12 +1,17 @@
-// remover_encomenda.js - Versão atualizada com botão
+// remover_encomenda.js - Versão final
 document.addEventListener('DOMContentLoaded', function() {
     var tabela = document.querySelector("#tabela-clientes");
     
     if (tabela) {
         // Adicionar evento de clique nos botões de remover
         tabela.addEventListener("click", function(event) {
-            if (event.target.classList.contains('botao-remover')) {
-                var linha = event.target.closest('.cliente');
+            if (event.target.classList.contains('botao-remover') || 
+                event.target.closest('.botao-remover')) {
+                
+                var botao = event.target.classList.contains('botao-remover') 
+                    ? event.target 
+                    : event.target.closest('.botao-remover');
+                var linha = botao.closest('.cliente');
                 
                 if (linha) {
                     var id = linha.getAttribute('data-id');
@@ -15,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     mostrarModalConfirmacao(
                         'Remover Encomenda',
-                        `Deseja remover a encomenda de <strong>${nome}</strong> - ${produto}?`,
+                        `Deseja remover a encomenda de ${nome} - ${produto}?`,
                         function() {
-                            // Remove do JSON Server se tiver ID
                             if (id) {
+                                // Remove do JSON Server
                                 fetch(`http://localhost:3000/encomendas/${id}`, {
                                     method: 'DELETE'
                                 })
@@ -39,10 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                     mostrarModal('Erro!', 'Não foi possível remover do servidor.', 'error');
                                 });
                             } else {
-                                // Remove apenas localmente se não tiver ID
+                                // Remove apenas localmente
                                 linha.style.opacity = '0';
-                                setTimeout(() => linha.remove(), 300);
-                                mostrarModal('Sucesso!', 'Encomenda removida!', 'success');
+                                setTimeout(() => {
+                                    linha.remove();
+                                    mostrarModal('Sucesso!', 'Encomenda removida!', 'success');
+                                }, 300);
                             }
                         }
                     );

@@ -1,4 +1,4 @@
-// api_encomendas.js - Versão JSON Server
+// api_encomendas.js - Versão JSON Server (CORRIGIDA)
 var botaoAPI = document.querySelector("#api-encomenda");
 
 if (botaoAPI) {
@@ -17,6 +17,10 @@ if (botaoAPI) {
                 return response.json();
             })
             .then(encomendas => {
+                // Limpa a tabela antes de adicionar novos dados
+                var tabela = document.querySelector("#tabela-clientes");
+                tabela.innerHTML = ''; // Limpa conteúdo existente
+                
                 // Adiciona cada encomenda na tabela
                 encomendas.forEach(encomenda => {
                     adicionaEncomendaTabela(encomenda);
@@ -37,33 +41,27 @@ if (botaoAPI) {
     });
 }
 
-// Função para adicionar encomenda vinda da API
+// Função para adicionar encomenda vinda da API (COM BOTÃO REMOVER)
 function adicionaEncomendaTabela(dadosEncomenda) {
     var tabela = document.querySelector("#tabela-clientes");
     
-    // Verifica se a encomenda já existe (pelo ID ou nome+produto)
-    var encomendaExistente = Array.from(tabela.querySelectorAll('.cliente')).find(linha => {
-        var nome = linha.querySelector('.nome').textContent;
-        var produto = linha.querySelector('.produto').textContent;
-        return nome === dadosEncomenda.nome && produto === dadosEncomenda.produto;
-    });
+    var novaLinha = document.createElement('tr');
+    novaLinha.className = 'cliente';
+    novaLinha.setAttribute('data-id', dadosEncomenda.id || '');
 
-    if (!encomendaExistente) {
-        var novaLinha = document.createElement('tr');
-        novaLinha.className = 'cliente';
-        novaLinha.setAttribute('data-id', dadosEncomenda.id || '');
+    // AGORA COM BOTÃO REMOVER
+    novaLinha.innerHTML = `
+        <td class="nome">${dadosEncomenda.nome}</td>
+        <td class="produto">${dadosEncomenda.produto}</td>
+        <td class="qtde">${dadosEncomenda.qtde}</td>
+        <td class="unitario">${formatarMoeda(dadosEncomenda.unitario)}</td>
+        <td class="total">${formatarMoeda(dadosEncomenda.total)}</td>
+        <td>
+            <button class="botao-remover btn btn-danger btn-sm">
+                <i class="fa fa-trash"></i> Remover
+            </button>
+        </td>
+    `;
 
-        novaLinha.innerHTML = `
-            <td class="nome">${dadosEncomenda.nome}</td>
-            <td class="produto">${dadosEncomenda.produto}</td>
-            <td class="qtde">${dadosEncomenda.qtde}</td>
-            <td class="unitario">${formatarMoeda(dadosEncomenda.unitario)}</td>
-            <td class="total">${formatarMoeda(dadosEncomenda.total)}</td>
-        `;
-
-        tabela.appendChild(novaLinha);
-        
-        // Recalcula totais se necessário
-        calcularTodosTotais();
-    }
+    tabela.appendChild(novaLinha);
 }

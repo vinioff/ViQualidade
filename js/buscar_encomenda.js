@@ -1,35 +1,28 @@
-var campoFiltro = document.querySelector("#filtrar-tabela");
+// buscar_encomenda.js - Versão corrigida
+document.addEventListener('DOMContentLoaded', function() {
+    var campoFiltro = document.querySelector("#filtrar-tabela");
 
-if (campoFiltro) {
-    campoFiltro.addEventListener("input", function(){
-        var clientes = document.querySelectorAll(".cliente");
+    if (campoFiltro) {
+        campoFiltro.addEventListener("input", function() {
+            var clientes = document.querySelectorAll(".cliente");
+            var filtro = this.value.toLowerCase();
 
-        //Verifica se tem informação para busca
-        if(this.value.length > 0){
-            //Há filtro de busca
-            for(var cli=0; cli < clientes.length; cli++){
-                var cliente = clientes[cli];
-                var nome = cliente.querySelector(".nome").textContent;
-                
-                //Busca com substring
-                var comparavel = nome.substring(0, this.value.length);
-                var comparavelMinusculo = comparavel.toLowerCase();
-                var filtroBuscaMinusculo = this.value.toLowerCase();
-
-                //Verifica se o nome digitado é igual ao do contador
-                if(filtroBuscaMinusculo != comparavelMinusculo){
-                    //Torna invisível
-                    cliente.classList.add("invisivel");
-                } else {
-                    //Deixa visível
+            if (filtro.length > 0) {
+                clientes.forEach(function(cliente) {
+                    var nome = cliente.querySelector(".nome").textContent.toLowerCase();
+                    var produto = cliente.querySelector(".produto").textContent.toLowerCase();
+                    
+                    if (nome.includes(filtro) || produto.includes(filtro)) {
+                        cliente.classList.remove("invisivel");
+                    } else {
+                        cliente.classList.add("invisivel");
+                    }
+                });
+            } else {
+                clientes.forEach(function(cliente) {
                     cliente.classList.remove("invisivel");
-                }
-            } 
-        } else {
-            //Não há filtro de busca, exibe lista completa
-            for(var cli=0; cli < clientes.length; cli++){
-                clientes[cli].classList.remove("invisivel");
+                });
             }
-        }
-    });
-}
+        });
+    }
+});
