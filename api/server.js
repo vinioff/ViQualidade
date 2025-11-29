@@ -1,42 +1,13 @@
 const jsonServer = require('json-server');
-const path = require('path');
-const express = require('express');
-const server = express();
+const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
+const port = process.env.PORT || 3000;
 
-// Servir arquivos estáticos
-server.use(express.static(path.join(__dirname, '..')));
-server.use('/css', express.static(path.join(__dirname, '../css')));
-server.use('/js', express.static(path.join(__dirname, '../js')));
-server.use('/img', express.static(path.join(__dirname, '../img')));
-
-// Middlewares do JSON Server
 server.use(middlewares);
-server.use('/api', router);
+server.use(router);
 
-// Rotas para páginas HTML
-server.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+server.listen(port, () => {
+    console.log(`🚀 JSON Server do Vi Qualidade rodando na porta ${port}`);
+    console.log(`📊 Acesse: http://localhost:${port}/encomendas`);
 });
-
-server.get('/produtos', (req, res) => {
-  res.sendFile(path.join(__dirname, '../pages/produtos.html'));
-});
-
-server.get('/contatos', (req, res) => {
-  res.sendFile(path.join(__dirname, '../pages/contatos.html'));
-});
-
-server.get('/encomendas', (req, res) => {
-  res.sendFile(path.join(__dirname, '../pages/encomendas.html'));
-});
-
-const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '0.0.0.0';
-
-server.listen(PORT, HOST, () => {
-  console.log(`🚀 Servidor rodando em http://${HOST}:${PORT}`);
-});
-
-module.exports = server;
