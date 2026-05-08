@@ -9,7 +9,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    /* ---------- MODAL ---------- */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -22,7 +21,6 @@
       backdrop-filter: blur(4px);
     }
     .modal-overlay.open { display: flex; }
-
     .modal-box {
       background: #fff;
       border-radius: 20px;
@@ -36,82 +34,51 @@
     }
     @keyframes modalIn {
       from { opacity:0; transform: scale(.92) translateY(16px); }
-      to   { opacity:1; transform: scale(1)  translateY(0); }
+      to   { opacity:1; transform: scale(1) translateY(0); }
     }
-
     .modal-img { position: relative; }
     .modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .modal-badge {
-      position: absolute;
-      top: 14px; left: 14px;
-      background: var(--gold);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 50px;
-      letter-spacing: .5px;
+      position: absolute; top: 14px; left: 14px;
+      background: var(--gold); color: #fff;
+      font-size: 12px; font-weight: 700;
+      padding: 5px 12px; border-radius: 50px; letter-spacing: .5px;
     }
-
     .modal-body { padding: 36px 30px; display: flex; flex-direction: column; }
     .modal-body h2 { font-size: 26px; color: var(--brown-dark); margin-bottom: 10px; }
-    .modal-price { font-size: 28px; font-weight: 900; color: var(--gold); margin-bottom: 16px; }
+    .modal-price { font-size: 28px; font-weight: 900; color: var(--gold); margin-bottom: 8px; }
+    .modal-pix-badge {
+      font-size: 12px; background: #f0f8f0; border-radius: 8px;
+      padding: 6px 12px; color: #2a7a2a; font-weight: 600;
+      display: inline-block; margin-bottom: 12px;
+    }
     .modal-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; flex: 1; }
     .modal-tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0; }
     .modal-tag {
-      background: var(--gold-pale);
-      color: var(--brown-mid);
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 50px;
+      background: var(--gold-pale); color: var(--brown-mid);
+      font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 50px;
     }
     .modal-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #25d366;
-      color: #fff;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 14px 20px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all .2s;
-      margin-top: auto;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #25d366; color: #fff; font-weight: 700; font-size: 15px;
+      padding: 14px 20px; border-radius: 50px; border: none; cursor: pointer;
+      text-decoration: none; transition: all .2s; margin-top: auto;
     }
     .modal-btn:hover { background: #1fb853; transform: translateY(-2px); }
-
     .modal-close {
-      position: absolute;
-      top: 14px; right: 14px;
-      width: 34px; height: 34px;
-      background: rgba(255,255,255,.9);
-      border: none;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
+      position: absolute; top: 14px; right: 14px;
+      width: 34px; height: 34px; background: rgba(255,255,255,.9);
+      border: none; border-radius: 50%; font-size: 18px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      color: var(--brown-dark);
-      transition: background .2s;
-      z-index: 10;
+      color: var(--brown-dark); transition: background .2s; z-index: 10;
     }
     .modal-close:hover { background: #fff; }
-
-    /* cards clicáveis */
     .produto-card { cursor: pointer; }
     .produto-card:hover { transform: translateY(-6px); }
     .produto-card .hint {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-align: center;
-      margin-top: 6px;
-      opacity: .7;
+      font-size: 11px; color: var(--text-muted);
+      text-align: center; margin-top: 6px; opacity: .7;
     }
-
     @media (max-width: 600px) {
       .modal-box { grid-template-columns: 1fr; }
       .modal-img { max-height: 220px; }
@@ -157,33 +124,48 @@
       <h2 class="section-title center">Escolha o seu favorito</h2>
       <div class="produtos-grid">
 
-        <div class="produto-card" onclick=\"abrirModal('Sensação','sensacao.jpg','Massa de chocolate com recheio cremoso de morango. Um clássico irresistível para quem ama a combinação perfeita de chocolate com morango fresquinho.',['Chocolate','Morango','Clássico'],18)\">
+        <div class="produto-card"
+          data-nome="Sensação"
+          data-img="sensacao.jpg"
+          data-preco="18"
+          data-desc="Massa de chocolate com recheio cremoso de morango. Um clássico irresistível para quem ama a combinação perfeita de chocolate com morango fresquinho."
+          data-tags="Chocolate,Morango,Clássico">
           <div class="produto-img"><img src="../img/sensacao.jpg" alt="Sensação"></div>
           <div class="produto-body">
             <h3>Sensação</h3>
             <p>Massa de chocolate com recheio cremoso de morango.</p>
             <div class="produto-footer">
-              <span class="preco">R$ 17</span>
+              <span class="preco">R$ 18</span>
               <span style="font-size:13px;color:var(--gold);font-weight:600;"><i class="fas fa-search-plus"></i> Ver detalhes</span>
             </div>
             <p class="hint">Clique para ver mais</p>
           </div>
         </div>
 
-        <div class="produto-card" onclick=\"abrirModal('Dois Amores','dois_amores.jpg','Massa de chocolate com recheio de chocolate branco e preto. Para quem ama os dois e não quer escolher — o melhor dos dois mundos num único pote!',['Choc. Branco','Choc. Preto','Especial'],18)\">
+        <div class="produto-card"
+          data-nome="Dois Amores"
+          data-img="dois_amores.jpg"
+          data-preco="18"
+          data-desc="Massa de chocolate com recheio de chocolate branco e preto. Para quem ama os dois e não quer escolher — o melhor dos dois mundos num único pote!"
+          data-tags="Choc. Branco,Choc. Preto,Especial">
           <div class="produto-img"><img src="../img/dois_amores.jpg" alt="Dois Amores"></div>
           <div class="produto-body">
             <h3>Dois Amores</h3>
             <p>Massa de chocolate com recheio de chocolate branco e preto.</p>
             <div class="produto-footer">
-              <span class="preco">R$ 17</span>
+              <span class="preco">R$ 18</span>
               <span style="font-size:13px;color:var(--gold);font-weight:600;"><i class="fas fa-search-plus"></i> Ver detalhes</span>
             </div>
             <p class="hint">Clique para ver mais</p>
           </div>
         </div>
 
-        <div class="produto-card" onclick=\"abrirModal('Morango','morango.jpg','Massa branca com recheio de chocolate branco e morango fresco. Refrescante, delicioso e perfeito para quem prefere sabores mais leves e frutados.',['Massa Branca','Choc. Branco','Morango Fresco'],17)\">
+        <div class="produto-card"
+          data-nome="Morango"
+          data-img="morango.jpg"
+          data-preco="17"
+          data-desc="Massa branca com recheio de chocolate branco e morango fresco. Refrescante, delicioso e perfeito para quem prefere sabores mais leves e frutados."
+          data-tags="Massa Branca,Choc. Branco,Morango Fresco">
           <div class="produto-img"><img src="../img/morango.jpg" alt="Morango"></div>
           <div class="produto-body">
             <h3>Morango</h3>
@@ -196,7 +178,12 @@
           </div>
         </div>
 
-        <div class="produto-card" onclick=\"abrirModal('Prestígio','prestigio.jpg','Massa de chocolate com recheio de brigadeiro de coco. A combinação clássica e irresistível inspirada no famoso bombom — crocante por fora, cremoso por dentro.',['Chocolate','Brigadeiro de Coco','Clássico'],18)\">
+        <div class="produto-card"
+          data-nome="Prestígio"
+          data-img="prestigio.jpg"
+          data-preco="18"
+          data-desc="Massa de chocolate com recheio de brigadeiro de coco. A combinação clássica e irresistível inspirada no famoso bombom — crocante por fora, cremoso por dentro."
+          data-tags="Chocolate,Brigadeiro de Coco,Clássico">
           <div class="produto-img"><img src="../img/prestigio.jpg" alt="Prestígio"></div>
           <div class="produto-body">
             <h3>Prestígio</h3>
@@ -209,7 +196,12 @@
           </div>
         </div>
 
-        <div class="produto-card" onclick=\"abrirModal('Maracujá','maracuja.jpg','Massa branca com brigadeiro gourmet branco e polpa de maracujá. Tropical, especial e com aquele toque azedinho que equilibra a doçura do brigadeiro.',['Massa Branca','Brigadeiro Branco','Maracujá'],17)\">
+        <div class="produto-card"
+          data-nome="Maracujá"
+          data-img="maracuja.jpg"
+          data-preco="17"
+          data-desc="Massa branca com brigadeiro gourmet branco e polpa de maracujá. Tropical, especial e com aquele toque azedinho que equilibra a doçura do brigadeiro."
+          data-tags="Massa Branca,Brigadeiro Branco,Maracujá">
           <div class="produto-img"><img src="../img/maracuja.jpg" alt="Maracujá"></div>
           <div class="produto-body">
             <h3>Maracujá</h3>
@@ -222,7 +214,12 @@
           </div>
         </div>
 
-        <div class="produto-card" onclick=\"abrirModal('Abacaxi','abacaxi.jpeg','Massa branca com recheio cremoso de abacaxi e chantilly. Leve, refrescante e delicioso — ideal para quem busca um sabor mais suave e tropical.',['Massa Branca','Abacaxi','Chantilly'],17)\">
+        <div class="produto-card"
+          data-nome="Abacaxi"
+          data-img="abacaxi.jpeg"
+          data-preco="17"
+          data-desc="Massa branca com recheio cremoso de abacaxi e chantilly. Leve, refrescante e delicioso — ideal para quem busca um sabor mais suave e tropical."
+          data-tags="Massa Branca,Abacaxi,Chantilly">
           <div class="produto-img"><img src="../img/abacaxi.jpeg" alt="Abacaxi"></div>
           <div class="produto-body">
             <h3>Abacaxi</h3>
@@ -243,8 +240,8 @@
     <div class="container">
       <h2>Quer fazer um pedido?</h2>
       <p>Entre em contato pelo WhatsApp e faça sua encomenda agora mesmo!</p>
-      <a href="encomendas.html" class="btn-primary btn-lg">
-        <i class="fas fa-shopping-bag"></i> Fazer Encomenda
+      <a href="https://wa.me/5511991390683" target="_blank" class="btn-primary btn-lg">
+        <i class="fab fa-whatsapp"></i> Fazer Encomenda
       </a>
     </div>
   </section>
@@ -265,7 +262,7 @@
           <li><a href="contatos.html">Contato</a></li>
         </ul>
       </div>
-            <div class="footer-contato">
+      <div class="footer-contato">
         <h4>Contato</h4>
         <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5511991390683">(11) 99139-0683</a></p>
         <p><i class="fas fa-map-marker-alt"></i> São Paulo – Zona Leste</p>
@@ -279,17 +276,17 @@
   </footer>
 
   <!-- MODAL -->
-  <div class="modal-overlay" id="modal" onclick="fecharSeOverlay(event)">
-    <div class="modal-box" id="modal-box">
-      <div class="modal-img" id="modal-img-wrap">
+  <div class="modal-overlay" id="modal">
+    <div class="modal-box">
+      <div class="modal-img">
         <img src="" alt="" id="modal-img">
         <span class="modal-badge" id="modal-badge-price">R$ 17</span>
       </div>
       <div class="modal-body">
-        <button class="modal-close" onclick="fecharModal()"><i class="fas fa-times"></i></button>
+        <button class="modal-close" id="btn-fechar-modal"><i class="fas fa-times"></i></button>
         <h2 id="modal-nome"></h2>
         <p class="modal-price" id="modal-price-text">R$ 17,00</p>
-        <p style="font-size:12px;background:#f0f8f0;border-radius:8px;padding:6px 12px;color:#2a7a2a;font-weight:600;display:inline-block;margin-bottom:8px;"><i class="fas fa-qrcode"></i> Pagamento somente via PIX</p>
+        <p class="modal-pix-badge"><i class="fas fa-qrcode"></i> Pagamento somente via PIX</p>
         <p class="modal-desc" id="modal-desc"></p>
         <div class="modal-tags" id="modal-tags"></div>
         <a href="#" id="modal-wa" target="_blank" class="modal-btn">
@@ -305,29 +302,43 @@
 
   <script src="../js/main.js"></script>
   <script>
-    function abrirModal(nome, img, desc, tags, preco) {
-      preco = preco || 17;
-      document.getElementById('modal-nome').textContent = nome;
-      document.getElementById('modal-img').src = '../img/' + img;
-      document.getElementById('modal-img').alt = nome;
-      document.getElementById('modal-desc').textContent = desc;
-      const tagsEl = document.getElementById('modal-tags');
-      tagsEl.innerHTML = tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-      const msg = `Olá! Gostaria de encomendar o Bolo de Pote *${nome}*. Pode me dar mais informações?`;
-      document.getElementById('modal-price-text').textContent = `R$ ${preco},00`;
-      document.getElementById('modal-badge-price').textContent = `R$ ${preco}`;
-      document.getElementById('modal-wa').href = `https://wa.me/5511991390683?text=${encodeURIComponent(msg)}`;
-      document.getElementById('modal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
+    var modal = document.getElementById('modal');
+
+    document.querySelectorAll('.produto-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var nome  = this.dataset.nome;
+        var img   = this.dataset.img;
+        var preco = this.dataset.preco;
+        var desc  = this.dataset.desc;
+        var tags  = this.dataset.tags.split(',');
+
+        document.getElementById('modal-nome').textContent = nome;
+        document.getElementById('modal-img').src = '../img/' + img;
+        document.getElementById('modal-img').alt = nome;
+        document.getElementById('modal-desc').textContent = desc;
+        document.getElementById('modal-price-text').textContent = 'R$ ' + preco + ',00';
+        document.getElementById('modal-badge-price').textContent = 'R$ ' + preco;
+
+        document.getElementById('modal-tags').innerHTML = tags.map(function(t) {
+          return '<span class="modal-tag">' + t.trim() + '</span>';
+        }).join('');
+
+        var msg = 'Olá! Gostaria de encomendar o Bolo de Pote *' + nome + '*. Pode me dar mais informações?';
+        document.getElementById('modal-wa').href = 'https://wa.me/5511991390683?text=' + encodeURIComponent(msg);
+
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
     function fecharModal() {
-      document.getElementById('modal').classList.remove('open');
+      modal.classList.remove('open');
       document.body.style.overflow = '';
     }
-    function fecharSeOverlay(e) {
-      if (e.target === document.getElementById('modal')) fecharModal();
-    }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+
+    document.getElementById('btn-fechar-modal').addEventListener('click', fecharModal);
+    modal.addEventListener('click', function(e) { if (e.target === modal) fecharModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') fecharModal(); });
   </script>
 </body>
 </html>
