@@ -1,10 +1,16 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/pages/index.html" },
-    { "source": "/produtos", "destination": "/pages/produtos.html" },
-    { "source": "/salgados", "destination": "/pages/salgados.html" },
-    { "source": "/bolos", "destination": "/pages/bolos.html" },
-    { "source": "/contatos", "destination": "/pages/contatos.html" },
-    { "source": "/encomendas", "destination": "/pages/encomendas.html" }
+    { "source": "/",                  "destination": "/pages/index.html"      },
+    { "source": "/index.html",        "destination": "/pages/index.html"      },
+    { "source": "/produtos",          "destination": "/pages/produtos.html"   },
+    { "source": "/produtos.html",     "destination": "/pages/produtos.html"   },
+    { "source": "/salgados",          "destination": "/pages/salgados.html"   },
+    { "source": "/salgados.html",     "destination": "/pages/salgados.html"   },
+    { "source": "/bolos",             "destination": "/pages/bolos.html"      },
+    { "source": "/bolos.html",        "destination": "/pages/bolos.html"      },
+    { "source": "/contatos",          "destination": "/pages/contatos.html"   },
+    { "source": "/contatos.html",     "destination": "/pages/contatos.html"   },
+    { "source": "/encomendas",        "destination": "/pages/encomendas.html" },
+    { "source": "/encomendas.html",   "destination": "/pages/encomendas.html" }
   ]
 }
