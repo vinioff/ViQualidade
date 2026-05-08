@@ -1,146 +1,350 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vi Qualidade</title>
-    <link rel="shortcut icon" href="../img/v.png" class="favi" type="image/x-icon">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style_encomendas.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fazer Encomenda – Vi Qualidade</title>
+  <link rel="shortcut icon" href="../img/v.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .encomenda-hero {
+      background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown-mid) 100%);
+      padding: 120px 0 64px;
+      text-align: center;
+      color: #fff;
+    }
+    .encomenda-hero h1 { color: #fff; font-size: clamp(32px, 5vw, 52px); margin-bottom: 12px; }
+    .encomenda-hero p { color: rgba(255,255,255,.75); font-size: 17px; max-width: 520px; margin: 0 auto; }
+    .encomenda-hero .section-label { color: #d4a017; }
+
+    .encomenda-section { padding: 72px 0 100px; }
+
+    .encomenda-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 44px 40px;
+    }
+    .form-card h2 { font-size: 26px; color: var(--brown-dark); margin-bottom: 8px; }
+    .form-card .sub { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; }
+
+    .campo-grupo { margin-bottom: 22px; }
+    .campo-grupo label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      margin-bottom: 7px;
+    }
+    .campo-grupo input,
+    .campo-grupo select,
+    .campo-grupo textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid #e8ddd4;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: var(--text-main);
+      background: var(--cream);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      appearance: auto;
+    }
+    .campo-grupo input:focus,
+    .campo-grupo select:focus,
+    .campo-grupo textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,134,11,.12);
+    }
+    .campo-grupo textarea { resize: vertical; min-height: 90px; }
+
+    .campos-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .btn-enviar-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #25d366;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all .25s;
+      margin-top: 8px;
+    }
+    .btn-enviar-wa:hover {
+      background: #1fb853;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,211,102,.35);
+    }
+    .btn-enviar-wa i { font-size: 20px; }
+
+    .info-lateral { display: flex; flex-direction: column; gap: 20px; }
+
+    .info-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+    .info-card h3 {
+      font-size: 17px;
+      color: var(--brown-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .info-card h3 i { color: var(--gold); }
+    .info-card ul { list-style: none; padding: 0; }
+    .info-card ul li {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--gray-light);
+      display: flex;
+      justify-content: space-between;
+    }
+    .info-card ul li:last-child { border: none; }
+    .info-card ul li span { font-weight: 700; color: var(--brown-dark); }
+    .info-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-top: 8px; }
+    .destaque {
+      background: #fdf3dc;
+      border-left: 3px solid var(--gold);
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--brown-mid);
+      margin-top: 14px;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all .2s;
+    }
+    .contact-link.wa { background: #e8fdf0; color: #1a9e4f; }
+    .contact-link.wa:hover { background: #d0f7e1; }
+    .contact-link.ig { background: #fdf0f8; color: #c13584; }
+    .contact-link.ig:hover { background: #f9e0f3; }
+    .contact-link i { font-size: 18px; }
+
+    @media (max-width: 860px) {
+      .encomenda-wrapper { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 18px; }
+      .campos-duo { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="divHeader">
-            <img src="../img/logo.gif" alt="Vi Qualidade" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="produtos.html">Produtos</a></li>
-                    <li><a href="contatos.html">Contato</a></li>
-                    <li><a href="encomendas.html">Encomendas</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <ul class="contatos-titulo">
-            <li class="contatos-items">Encomendas</li>
-        </ul>
-        <section class="container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Produto</th>
-                        <th>Quantidade</th>
-                        <th>Valor Unitário</th>
-                        <th>Total</th>
-                        <th>Ações</th> <!-- Nova coluna para o botão de remover -->
-                    </tr>
-                </thead>
-                <tbody id="tabela-clientes">
-                    <tr class="cliente">
-                        <td class="nome">Carolina</td>
-                        <td class="produto">Bolo de Alpino</td>
-                        <td class="qtde">16</td>
-                        <td class="unitario">17</td>
-                        <td class="total"></td>
-                        <td class="acoes">
-                            <button class="botao-remover">Remover</button>
-                        </td>
-                    </tr>
-                    <tr class="cliente">
-                        <td class="nome">Pedro</td>
-                        <td class="produto">Bolo de Alpino</td>
-                        <td class="qtde">16</td>
-                        <td class="unitario">17</td>
-                        <td class="total"></td>
-                        <td class="acoes">
-                            <button class="botao-remover">Remover</button>
-                        </td>
-                    </tr>
-                    <tr class="cliente">
-                        <td class="nome">Luyra</td>
-                        <td class="produto">Bolo de Prestígio</td>
-                        <td class="qtde">2</td>
-                        <td class="unitario">17</td>
-                        <td class="total"></td>
-                        <td class="acoes">
-                            <button class="botao-remover">Remover</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <form id="form-adiciona">
-                <div class="grupos-grid">
-                    <div class="grupo">
-                        <label for="input-nome">Nome do Cliente</label>
-                        <input type="text" id="input-nome" name="nome" class="campo" placeholder="Digite o nome completo" required>
-                    </div>
-                    
-                    <div class="grupo">
-                        <label for="produto">Produto</label>
-                        <select id="produto" name="produto" class="campo" required>
-                            <option value="">Selecione um produto</option>
-                            <option value="Bolo de Sensação">Bolo de Sensação</option>
-                            <option value="Bolo de Prestígio">Bolo de Prestígio</option>
-                            <option value="Bolo de Alpino">Bolo de Alpino</option>
-                        </select>
-                    </div>
-                    
-                    <div class="grupo">
-                        <label for="input-qtde">Quantidade</label>
-                        <input type="number" id="input-qtde" name="qtde" class="campo campo-medio" placeholder="Quantidade" min="1" required>
-                    </div>
-                    
-                    <div class="grupo">
-                        <label for="input-unitario">Valor Unitário</label>
-                        <input type="number" id="input-unitario" name="unitario" class="campo campo-medio" placeholder="R$ 0,00" min="0.01" step="0.01" required>
-                    </div>
-                </div>
-                
-                <button type="button" id="adicionar-encomenda" class="botao-moderno">
-                    <span class="btn-text">Adicionar Encomenda</span>
-                    <span class="btn-icon">+</span>
-                </button>
-            </form>
-            
-            <!-- Separar bem a seção de busca do botão de adicionar -->
-            <div class="separador-busca"></div>
-            
-            <div class="grupo-busca">
-                <label for="filtrar-tabela">Buscar Encomenda:</label>
-                <input type="text" id="filtrar-tabela" class="filtrar-tabela" placeholder="Digite o nome do cliente para buscar...">
-            </div>
-            
-            <!-- Botão da API -->
-            <div class="grupo-botao-api">
-                <button id="api-encomenda" class="botao-api">Buscar Encomendas da API</button>
-            </div>
-            
-            <!-- Mensagens de erro -->
-            <ul id="mensagens-erro"></ul>
-        </section>
 
-        <footer>
-            <img src="../img/logo.gif" alt="Vi Qualidade" class="logo_footer">
-            <p>
-                Encomendas on-line:
-                <a href="https://wa.me/qr/FD6ZCSVTAQ3IC1"><i class="fa fa-whatsapp"></i> (11) 94791-0845</a>
-                <span>|</span>
-                <a href="https://www.instagram.com/viny_offh/"><i class="fa fa-instagram"></i> @viny_offh</a>
-            </p>
-        </footer>
-    </main>
-    
-    <script src="../js/adiciona_encomenda.js"></script>
-    <script src="../js/remover_encomenda.js"></script>
-    <script src="../js/buscar_encomenda.js"></script>
-    <script src="../js/encomendas.js"></script>
-    <script src="../js/api_encomendas.js"></script>
-    <script src="../js/utilis.js"></script>
-       <script src="../js/modal.js"></script>
-    
+  <header id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="../img/logo.gif" alt="Vi Qualidade" class="logo">
+        <span class="brand-name">Vi Qualidade</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="salgados.html">Salgados</a></li>
+          <li><a href="bolos.html">Bolos</a></li>
+          <li><a href="contatos.html">Contato</a></li>
+          <li><a href="encomendas.html" class="active">Encomendas</a></li>
+        </ul>
+      </nav>
+      <a href="https://wa.me/5511947910845" target="_blank" class="btn-whatsapp-header">
+        <i class="fab fa-whatsapp"></i> Peça Agora
+      </a>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="encomenda-hero">
+    <div class="container">
+      <p class="section-label">Peça o seu</p>
+      <h1>Fazer Encomenda</h1>
+      <p>Preencha o formulário e você será redirecionado ao nosso WhatsApp com a mensagem já pronta!</p>
+    </div>
+  </section>
+
+  <section class="encomenda-section">
+    <div class="container">
+      <div class="encomenda-wrapper">
+
+        <div class="form-card">
+          <h2>Detalhes do Pedido</h2>
+          <p class="sub">Preencha os campos abaixo e clique no botão para enviar pelo WhatsApp. Rápido e fácil!</p>
+
+          <div class="campo-grupo">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" placeholder="Como podemos te chamar?">
+          </div>
+
+          <div class="campo-grupo">
+            <label for="produto">Produto desejado</label>
+            <select id="produto">
+              <option value="">— Selecione —</option>
+              <optgroup label="🍰 Bolos de Pote (R$ 17 un.)">
+                <option value="Bolo de Pote Sensação">Bolo de Pote — Sensação</option>
+                <option value="Bolo de Pote Dois Amores">Bolo de Pote — Dois Amores</option>
+                <option value="Bolo de Pote Morango">Bolo de Pote — Morango</option>
+                <option value="Bolo de Pote Prestígio">Bolo de Pote — Prestígio</option>
+                <option value="Bolo de Pote Maracujá">Bolo de Pote — Maracujá</option>
+                <option value="Bolo de Pote Abacaxi">Bolo de Pote — Abacaxi</option>
+              </optgroup>
+              <optgroup label="🎂 Bolos de Aniversário">
+                <option value="Bolo de Aniversário Tradicional (R$ 150/kg)">Bolo de Aniversário — Tradicional (R$ 150/kg)</option>
+                <option value="Bolo de Aniversário de Chocolate (R$ 160/kg)">Bolo de Aniversário — Chocolate (R$ 160/kg)</option>
+              </optgroup>
+              <optgroup label="🧆 Salgados">
+                <option value="Salgados (sob consulta)">Salgados — Consultar disponibilidade</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="campos-duo">
+            <div class="campo-grupo">
+              <label for="quantidade">Quantidade</label>
+              <input type="number" id="quantidade" placeholder="Ex: 10" min="1">
+            </div>
+            <div class="campo-grupo">
+              <label for="data">Data para retirada</label>
+              <input type="date" id="data">
+            </div>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="obs">Observações / Personalização</label>
+            <textarea id="obs" placeholder="Tema, restrições alimentares, mensagem na decoração..."></textarea>
+          </div>
+
+          <button class="btn-enviar-wa" onclick="enviarWhatsApp()">
+            <i class="fab fa-whatsapp"></i>
+            Enviar Pedido pelo WhatsApp
+          </button>
+        </div>
+
+        <div class="info-lateral">
+          <div class="info-card">
+            <h3><i class="fas fa-tag"></i> Preços</h3>
+            <ul>
+              <li>Bolo de Pote <span>R$ 17,00 un.</span></li>
+              <li>Aniversário Tradicional <span>R$ 150/kg</span></li>
+              <li>Aniversário Chocolate <span>R$ 160/kg</span></li>
+              <li>Pedido mínimo (aniv.) <span>2 kg</span></li>
+            </ul>
+            <p class="destaque">💳 Bolos de aniversário requerem pagamento antecipado. Combinamos no WhatsApp!</p>
+          </div>
+
+          <div class="info-card">
+            <h3><i class="fas fa-info-circle"></i> Informações</h3>
+            <p>✅ Tudo feito sob encomenda com ingredientes frescos.</p>
+            <p>📍 <strong>Somente retirada no local</strong> — São Paulo, Zona Leste.</p>
+            <p>🗓️ Agende com antecedência para garantir sua data!</p>
+          </div>
+
+          <div class="info-card">
+            <h3><i class="fas fa-headset"></i> Fale Direto</h3>
+            <div class="contact-links">
+              <a href="https://wa.me/5511947910845" target="_blank" class="contact-link wa">
+                <i class="fab fa-whatsapp"></i> (11) 94791-0845
+              </a>
+              <a href="https://www.instagram.com/viny_offh/" target="_blank" class="contact-link ig">
+                <i class="fab fa-instagram"></i> @viny_offh
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../img/logo.gif" alt="Vi Qualidade" class="logo-footer">
+        <p class="footer-slogan">Feito com amor, servido com qualidade.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="produtos.html">Bolos de Pote</a></li>
+          <li><a href="salgados.html">Salgados</a></li>
+          <li><a href="bolos.html">Bolos de Aniversário</a></li>
+          <li><a href="contatos.html">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-contato">
+        <h4>Contato</h4>
+        <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5511947910845">(11) 94791-0845</a></p>
+        <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/viny_offh/" target="_blank">@viny_offh</a></p>
+        <p><i class="fas fa-map-marker-alt"></i> São Paulo – Zona Leste</p>
+        <p class="footer-aviso"><i class="fas fa-store-alt"></i> Somente retirada no local</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vi Qualidade · Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511947910845" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function enviarWhatsApp() {
+      const nome    = document.getElementById('nome').value.trim();
+      const produto = document.getElementById('produto').value;
+      const qtde    = document.getElementById('quantidade').value;
+      const data    = document.getElementById('data').value;
+      const obs     = document.getElementById('obs').value.trim();
+
+      if (!nome || !produto) {
+        alert('Por favor, preencha pelo menos seu nome e o produto desejado.');
+        return;
+      }
+
+      let msg = `Olá! Gostaria de fazer um pedido na Vi Qualidade. 😊\n\n`;
+      msg += `👤 *Nome:* ${nome}\n`;
+      msg += `🛒 *Produto:* ${produto}\n`;
+      if (qtde) msg += `🔢 *Quantidade:* ${qtde}\n`;
+      if (data) {
+        const [y, m, d] = data.split('-');
+        msg += `📅 *Data de retirada:* ${d}/${m}/${y}\n`;
+      }
+      if (obs) msg += `📝 *Obs:* ${obs}\n`;
+      msg += `\nAguardo confirmação! 🎂`;
+
+      window.open(`https://wa.me/5511947910845?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
 </body>
 </html>

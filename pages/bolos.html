@@ -8,6 +8,87 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .galeria-section { padding: 72px 0; background: var(--gray-light); }
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .galeria-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      position: relative;
+      aspect-ratio: 1/1;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .galeria-item:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .galeria-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(61,43,31,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .25s;
+    }
+    .galeria-item:hover .overlay { background: rgba(61,43,31,.45); }
+    .galeria-item .overlay i {
+      color: #fff;
+      font-size: 32px;
+      opacity: 0;
+      transform: scale(.7);
+      transition: all .25s;
+    }
+    .galeria-item:hover .overlay i { opacity: 1; transform: scale(1); }
+
+    /* lightbox */
+    .lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+    .lb-overlay.open { display: flex; }
+    .lb-overlay img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 12px;
+      box-shadow: 0 16px 64px rgba(0,0,0,.6);
+      animation: lbIn .2s ease;
+    }
+    @keyframes lbIn {
+      from { opacity:0; transform: scale(.88); }
+      to   { opacity:1; transform: scale(1); }
+    }
+    .lb-close {
+      position: absolute;
+      top: 18px; right: 22px;
+      background: rgba(255,255,255,.15);
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.3); }
+
+    @media (max-width: 640px) {
+      .galeria-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -110,6 +191,48 @@
     </div>
   </section>
 
+  <!-- GALERIA -->
+  <section class="galeria-section">
+    <div class="container">
+      <p class="section-label center">Inspirações</p>
+      <h2 class="section-title center">Nossos Bolos de Aniversário</h2>
+      <p style="text-align:center;color:var(--text-muted);margin-top:8px;font-size:15px;">Clique em qualquer foto para ampliar e se inspirar para o seu próximo pedido!</p>
+      <div class="galeria-grid">
+        <div class="galeria-item" onclick="abrirLb('../img/bolo_aniv1.png')">
+          <img src="../img/bolo_aniv1.png" alt="Bolo de Aniversário">
+          <div class="overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="galeria-item" onclick="abrirLb('../img/bolo_aniv2.png')">
+          <img src="../img/bolo_aniv2.png" alt="Bolo de Aniversário">
+          <div class="overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="galeria-item" onclick="abrirLb('../img/bolo_aniv3.png')">
+          <img src="../img/bolo_aniv3.png" alt="Bolo de Aniversário">
+          <div class="overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="galeria-item" onclick="abrirLb('../img/bolo_aniv4.png')">
+          <img src="../img/bolo_aniv4.png" alt="Bolo de Aniversário Temático">
+          <div class="overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="galeria-item" onclick="abrirLb('../img/bolo_aniv5.png')">
+          <img src="../img/bolo_aniv5.png" alt="Bolo de Aniversário Artesanal">
+          <div class="overlay"><i class="fas fa-search-plus"></i></div>
+        </div>
+        <div class="galeria-item" style="background:var(--gold-pale);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;cursor:default;">
+          <i class="fas fa-camera" style="font-size:36px;color:var(--gold);"></i>
+          <p style="font-size:14px;color:var(--brown-mid);font-weight:600;text-align:center;padding:0 16px;">Envie o tema do seu bolo e criamos algo único para você!</p>
+          <a href="encomendas.html" style="font-size:13px;color:var(--gold);font-weight:700;text-decoration:underline;">Fazer encomenda →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lb-overlay" id="lb" onclick="fecharLb()">
+    <button class="lb-close" onclick="fecharLb()"><i class="fas fa-times"></i></button>
+    <img src="" id="lb-img" alt="Bolo de Aniversário">
+  </div>
+
   <section class="cta-final">
     <div class="container">
       <h2>Torne esse aniversário inesquecível!</h2>
@@ -154,5 +277,17 @@
   </a>
 
   <script src="../js/main.js"></script>
+  <script>
+    function abrirLb(src) {
+      document.getElementById('lb-img').src = src;
+      document.getElementById('lb').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function fecharLb() {
+      document.getElementById('lb').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharLb(); });
+  </script>
 </body>
 </html>
